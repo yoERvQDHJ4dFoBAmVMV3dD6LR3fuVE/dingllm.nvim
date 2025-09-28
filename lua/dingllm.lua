@@ -103,7 +103,7 @@ function M.write_string_at_cursor(str)
 
     local num_lines = #lines
     local last_line_length = #lines[num_lines]
-    vim.api.nvim_win_set_cursor(current_window, { row + num_lines, col + last_line_length })
+    vim.api.nvim_win_set_cursor(current_window, { row, col + last_line_length })
   end)
 end
 
@@ -116,7 +116,6 @@ local function get_prompt(opts)
     prompt = table.concat(visual_lines, '\n')
     if replace then
       vim.api.nvim_command 'normal! d'
-      vim.api.nvim_command 'normal! k'
     else
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', false, true, true), 'nx', false)
     end
